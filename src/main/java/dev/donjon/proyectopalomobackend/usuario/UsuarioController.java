@@ -32,13 +32,13 @@ public class UsuarioController
         return new ResponseEntity<List<Usuario>>(usuarioService.getUsuarios(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/crear-usuario")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario)
     {
         return new ResponseEntity<Usuario>(usuarioService.crearUsuario(usuario), HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/crear-usuarios")
     public ResponseEntity<List<Usuario>> crearUsuarios(@RequestBody List<Usuario> usuarios)
     {
         return new ResponseEntity<List<Usuario>>(usuarioService.crearUsuarios(usuarios), HttpStatus.CREATED);

@@ -32,13 +32,13 @@ public class RolController
         return new ResponseEntity<List<Rol>>(rolService.getRoles(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/crear-rol")
     public ResponseEntity<Rol> crearRol(@RequestBody Rol rol)
     {
         return new ResponseEntity<Rol>(rolService.crearRol(rol), HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/crear-roles")
     public ResponseEntity<List<Rol>> crearRoles(@RequestBody List<Rol> roles)
     {
         return new ResponseEntity<List<Rol>>(rolService.crearRoles(roles), HttpStatus.CREATED);
