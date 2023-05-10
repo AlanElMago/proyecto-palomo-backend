@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.rol;
+package dev.donjon.proyectopalomobackend.entidades.rol;
 
 import java.util.List;
 import java.util.Optional;

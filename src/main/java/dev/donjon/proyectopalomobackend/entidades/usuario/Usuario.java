@@ -1,8 +1,8 @@
-package dev.donjon.proyectopalomobackend.usuario;
+package dev.donjon.proyectopalomobackend.entidades.usuario;
 
 import java.util.List;
 
-import dev.donjon.proyectopalomobackend.rol.Rol;
+import dev.donjon.proyectopalomobackend.entidades.rol.Rol;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

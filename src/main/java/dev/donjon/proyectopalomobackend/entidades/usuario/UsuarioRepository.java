@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.usuario;
+package dev.donjon.proyectopalomobackend.entidades.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

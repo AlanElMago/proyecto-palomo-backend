@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.rol;
+package dev.donjon.proyectopalomobackend.entidades.rol;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
