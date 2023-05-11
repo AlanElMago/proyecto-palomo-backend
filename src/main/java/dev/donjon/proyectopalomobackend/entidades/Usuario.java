@@ -1,6 +1,5 @@
 package dev.donjon.proyectopalomobackend.entidades;
 
-import java.util.Collection;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -38,19 +37,26 @@ public class Usuario
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String contrasena;
+
+    @Column(nullable = false)
+    private boolean activo;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "usuarios_roles",
-        joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id")
+        joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "id")
     )
     private List<Rol> roles;
 
-    public Usuario (String nombre, String apellido, String email, List<Rol> roles)
+    public Usuario (String nombre, String apellido, String email, String contrasena, List<Rol> roles)
     {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.contrasena = contrasena;
         this.roles = roles;
     }
 

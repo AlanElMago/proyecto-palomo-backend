@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.dto;
+package dev.donjon.proyectopalomobackend.entidades;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

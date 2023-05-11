@@ -2,6 +2,7 @@ package dev.donjon.proyectopalomobackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -18,16 +19,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import dev.donjon.proyectopalomobackend.dao.UserDao;
+import dev.donjon.proyectopalomobackend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig
-{
+public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
-    private final UserDao userDao;
+    private final AuthenticationService authenticationService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,6 +36,8 @@ public class SecurityConfig
                 .authorizeHttpRequests()
                 .requestMatchers(new AntPathRequestMatcher("/**/auth/**"))
                 .permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/**/roles/**"))
+                .hasRole("ADMINISTRADOR")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -59,27 +61,22 @@ public class SecurityConfig
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
-    {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
     @Bean
     @Deprecated
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
-    public UserDetailsService userDetailsService()
-    {
-        return new UserDetailsService()
-        {
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException
-            {
-                return userDao.findUserByEmail(email);
+            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+                return authenticationService.findUserByEmail(email);
             }
         };
     }

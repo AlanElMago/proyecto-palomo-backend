@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.http.HttpHeaders;
 
-import dev.donjon.proyectopalomobackend.dao.UserDao;
+import dev.donjon.proyectopalomobackend.services.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter
 {
-    private final UserDao userDao;
+    private final AuthenticationService authenticationService;
     private final JwtUtils jwtUtils;
 
     @Override
@@ -44,7 +44,7 @@ public class JwtAuthFilter extends OncePerRequestFilter
         userEmail = jwtUtils.extractUsername(jwtToken);
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDao.findUserByEmail(userEmail);
+            UserDetails userDetails = authenticationService.findUserByEmail(userEmail);
 
             if (jwtUtils.isTokenValid(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken =

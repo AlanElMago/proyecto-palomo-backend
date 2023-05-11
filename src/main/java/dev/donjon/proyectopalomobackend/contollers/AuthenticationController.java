@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.donjon.proyectopalomobackend.config.JwtUtils;
-import dev.donjon.proyectopalomobackend.dao.UserDao;
-import dev.donjon.proyectopalomobackend.dto.AuthenticationRequest;
+import dev.donjon.proyectopalomobackend.entidades.AuthenticationRequest;
+import dev.donjon.proyectopalomobackend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationController
 {
     private final AuthenticationManager authenticationManager;
-    private final UserDao userDao;
+    private final AuthenticationService authenticationService;
     private final JwtUtils jwtUtils;
 
     @PostMapping("/authenticate")
@@ -31,7 +31,7 @@ public class AuthenticationController
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
-        final UserDetails user = userDao.findUserByEmail(request.getEmail());
+        final UserDetails user = authenticationService.findUserByEmail(request.getEmail());
 
         if (user != null) {
             return new ResponseEntity<String>(jwtUtils.generateToken(user), HttpStatus.OK);
