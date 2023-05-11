@@ -17,7 +17,7 @@ import dev.donjon.proyectopalomobackend.entities.Rol;
 import dev.donjon.proyectopalomobackend.services.RolService;
 
 @RestController
-@RequestMapping(path = "api/v1/roles")
+@RequestMapping(path = "/api/v1/roles")
 public class RolController
 {
     @Autowired
