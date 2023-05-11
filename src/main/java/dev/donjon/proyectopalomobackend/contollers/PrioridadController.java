@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,13 +22,13 @@ public class PrioridadController
     private PrioridadService prioridadService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Prioridad>> getPrioridad(Long id)
+    public ResponseEntity<Optional<Prioridad>> getPrioridad(@PathVariable Long id)
     {
         return new ResponseEntity<Optional<Prioridad>>(prioridadService.getPrioridad(id), HttpStatus.OK);
     }
 
     @GetMapping("/por-nivel/{nivel}")
-    public ResponseEntity<Optional<Prioridad>> getPrioridadPorNivel(Integer nivel)
+    public ResponseEntity<Optional<Prioridad>> getPrioridadPorNivel(@PathVariable Integer nivel)
     {
         return new ResponseEntity<Optional<Prioridad>>(prioridadService.getPrioridadPorNivel(nivel), HttpStatus.OK);
     }
