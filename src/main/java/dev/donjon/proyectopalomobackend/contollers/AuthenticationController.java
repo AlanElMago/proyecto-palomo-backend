@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.donjon.proyectopalomobackend.config.JwtUtils;
-import dev.donjon.proyectopalomobackend.entidades.AuthenticationRequest;
+import dev.donjon.proyectopalomobackend.entities.AuthenticationRequest;
+import dev.donjon.proyectopalomobackend.jwt.JwtUtils;
 import dev.donjon.proyectopalomobackend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 
