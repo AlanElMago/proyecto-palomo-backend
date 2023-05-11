@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import dev.donjon.proyectopalomobackend.entidades.Rol;
-import dev.donjon.proyectopalomobackend.entidades.Usuario;
+import dev.donjon.proyectopalomobackend.entities.Rol;
+import dev.donjon.proyectopalomobackend.entities.Usuario;
 import dev.donjon.proyectopalomobackend.repositories.RolRepository;
 import dev.donjon.proyectopalomobackend.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;

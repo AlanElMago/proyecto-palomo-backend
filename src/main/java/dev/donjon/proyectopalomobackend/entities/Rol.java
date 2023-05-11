@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.entidades;
+package dev.donjon.proyectopalomobackend.entities;
 
 import java.util.List;
 

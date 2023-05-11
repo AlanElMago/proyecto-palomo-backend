@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.donjon.proyectopalomobackend.entidades.Rol;
+import dev.donjon.proyectopalomobackend.entities.Rol;
 import dev.donjon.proyectopalomobackend.services.RolService;
 
 @RestController

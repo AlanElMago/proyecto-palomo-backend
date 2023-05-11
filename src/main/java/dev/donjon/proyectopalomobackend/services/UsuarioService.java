@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dev.donjon.proyectopalomobackend.entidades.Usuario;
+import dev.donjon.proyectopalomobackend.entities.Usuario;
 import dev.donjon.proyectopalomobackend.repositories.UsuarioRepository;
 
 @Service

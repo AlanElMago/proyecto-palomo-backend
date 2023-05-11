@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import dev.donjon.proyectopalomobackend.entidades.Rol;
+import dev.donjon.proyectopalomobackend.entities.Rol;
 
 @Repository
 public interface RolRepository extends JpaRepository<Rol, Long>
