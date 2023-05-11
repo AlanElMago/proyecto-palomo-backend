@@ -1,10 +1,13 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,4 +31,7 @@ public class Criterio
 
     @Column(nullable = false)
     private String nombre;
+
+    @OneToMany(mappedBy = "calificacion")
+    private List<Calificacion> calificaciones;
 }
