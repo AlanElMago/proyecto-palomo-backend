@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import dev.donjon.proyectopalomobackend.jwt.JwtAuthFilter;
 import dev.donjon.proyectopalomobackend.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 

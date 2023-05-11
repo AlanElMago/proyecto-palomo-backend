@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.config;
+package dev.donjon.proyectopalomobackend.jwt;
 
 import java.util.Date;
 import java.util.HashMap;
