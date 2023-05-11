@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.entidades.usuario;
+package dev.donjon.proyectopalomobackend.contollers;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.donjon.proyectopalomobackend.entidades.Usuario;
+import dev.donjon.proyectopalomobackend.services.UsuarioService;
 
 @RestController
 @RequestMapping(path = "api/v1/usuarios")

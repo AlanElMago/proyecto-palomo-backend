@@ -1,4 +1,4 @@
-package dev.donjon.proyectopalomobackend.entidades.rol;
+package dev.donjon.proyectopalomobackend.contollers;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.donjon.proyectopalomobackend.entidades.Rol;
+import dev.donjon.proyectopalomobackend.services.RolService;
 
 @RestController
 @RequestMapping(path = "api/v1/roles")
