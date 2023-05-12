@@ -10,5 +10,5 @@ import dev.donjon.proyectopalomobackend.entities.Rol;
 @Repository
 public interface RolRepository extends JpaRepository<Rol, Long>
 {
-    public List<Rol> findByUsuarios_Id(Long usuarioId);
+    public List<Rol> findByUsuarios_Id(Long idUsuario);
 }

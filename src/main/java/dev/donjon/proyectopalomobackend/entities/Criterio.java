@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -27,11 +28,14 @@ public class Criterio
     private Long id;
 
     @Column(nullable = false)
-    private Integer numeroOrden;
+    private Short numeroOrden;
 
     @Column(nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "calificacion")
+    @ManyToMany(mappedBy = "criterios")
+    private List<EncuestaServicio> encuestasServicio;
+
+    @OneToMany(mappedBy = "criterio")
     private List<Calificacion> calificaciones;
 }

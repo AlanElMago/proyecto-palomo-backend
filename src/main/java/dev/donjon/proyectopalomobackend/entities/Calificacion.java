@@ -1,5 +1,7 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +26,14 @@ public class Calificacion
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_calificaion")
     private Long id;
 
-    @ManyToOne
+    @Column (nullable = false)
+    private Short puntaje;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_criterio")
     private Criterio criterio;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_encuesta_servicio")
+    private EncuestaServicio encuestaServicio;
 }

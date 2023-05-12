@@ -51,6 +51,9 @@ public class Usuario
     )
     private List<Rol> roles;
 
+    @ManyToMany(mappedBy = "asesoresAsignados")
+    private List<Actividad> actividades;
+
     public Usuario (String nombre, String apellido, String email, String contrasena, List<Rol> roles)
     {
         this.nombre = nombre;
