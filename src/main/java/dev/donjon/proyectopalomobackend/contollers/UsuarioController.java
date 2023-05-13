@@ -17,7 +17,7 @@ import dev.donjon.proyectopalomobackend.entities.Usuario;
 import dev.donjon.proyectopalomobackend.services.UsuarioService;
 
 @RestController
-@RequestMapping(path = "/api/v1/usuario")
+@RequestMapping(path = "/api/v1/usuarios")
 public class UsuarioController
 {
     @Autowired
@@ -29,7 +29,7 @@ public class UsuarioController
         return new ResponseEntity<Optional<Usuario>>(usuarioService.getUsuario(id), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Usuario>> getUsuarios()
     {
         return new ResponseEntity<List<Usuario>>(usuarioService.getUsuarios(), HttpStatus.OK);

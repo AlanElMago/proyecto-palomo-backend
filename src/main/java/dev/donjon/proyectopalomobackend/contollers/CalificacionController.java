@@ -14,7 +14,7 @@ import dev.donjon.proyectopalomobackend.entities.Calificacion;
 import dev.donjon.proyectopalomobackend.services.CalificacionService;
 
 @RestController
-@RequestMapping("/api/v1/calificacion")
+@RequestMapping("/api/v1/calificaciones")
 public class CalificacionController
 {
     @Autowired

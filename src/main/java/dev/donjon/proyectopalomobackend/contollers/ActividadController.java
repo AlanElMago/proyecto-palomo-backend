@@ -15,7 +15,7 @@ import dev.donjon.proyectopalomobackend.entities.Actividad;
 import dev.donjon.proyectopalomobackend.services.ActividadService;
 
 @RestController
-@RequestMapping("/api/v1/actividad")
+@RequestMapping("/api/v1/actividades")
 public class ActividadController
 {
     @Autowired
@@ -27,7 +27,7 @@ public class ActividadController
         return new ResponseEntity<Optional<Actividad>>(actividadService.getActividad(id), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Actividad>> getActividades()
     {
         return new ResponseEntity<List<Actividad>>(actividadService.getActividades(), HttpStatus.OK);

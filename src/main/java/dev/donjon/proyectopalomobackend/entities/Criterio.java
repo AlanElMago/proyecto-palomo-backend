@@ -2,8 +2,11 @@ package dev.donjon.proyectopalomobackend.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,9 +36,11 @@ public class Criterio
     @Column(nullable = false)
     private String nombre;
 
-    @ManyToMany(mappedBy = "criterios")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "criterios", fetch = FetchType.LAZY)
     private List<EncuestaServicio> encuestasServicio;
 
-    @OneToMany(mappedBy = "criterio")
+    @JsonIgnore
+    @OneToMany(mappedBy = "criterio", fetch = FetchType.LAZY)
     private List<Calificacion> calificaciones;
 }

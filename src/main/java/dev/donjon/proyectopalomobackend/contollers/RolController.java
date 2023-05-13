@@ -17,7 +17,7 @@ import dev.donjon.proyectopalomobackend.entities.Rol;
 import dev.donjon.proyectopalomobackend.services.RolService;
 
 @RestController
-@RequestMapping(path = "/api/v1/rol")
+@RequestMapping(path = "/api/v1/roles")
 public class RolController
 {
     @Autowired
@@ -29,7 +29,7 @@ public class RolController
         return new ResponseEntity<Optional<Rol>>(rolService.getRol(id), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Rol>> getRoles()
     {
         return new ResponseEntity<List<Rol>>(rolService.getRoles(), HttpStatus.OK);

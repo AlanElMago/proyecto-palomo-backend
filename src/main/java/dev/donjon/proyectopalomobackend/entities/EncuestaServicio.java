@@ -2,8 +2,12 @@ package dev.donjon.proyectopalomobackend.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,10 +38,12 @@ public class EncuestaServicio
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_encuesta_servicio")
     private Long id;
 
-    @OneToOne(mappedBy = "encuestaServicio")
+    @JsonIgnore
+    @OneToOne(mappedBy = "encuestaServicio", fetch = FetchType.LAZY)
     private Actividad actividad;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
         name = "encuestas_servicio_crtierios",
         joinColumns = @JoinColumn(name = "id_encuesta_servicio", referencedColumnName = "id"),
@@ -45,6 +51,7 @@ public class EncuestaServicio
     )
     private List<Criterio> criterios;
 
-    @OneToMany(mappedBy = "encuestaServicio")
+    @JsonIgnore
+    @OneToMany(mappedBy = "encuestaServicio", fetch = FetchType.LAZY)
     private List<Calificacion> calificaciones;
 }

@@ -15,7 +15,7 @@ import dev.donjon.proyectopalomobackend.entities.Prioridad;
 import dev.donjon.proyectopalomobackend.services.PrioridadService;
 
 @RestController
-@RequestMapping(path = "/api/v1/prioridad")
+@RequestMapping(path = "/api/v1/prioridades")
 public class PrioridadController
 {
     @Autowired
@@ -33,7 +33,7 @@ public class PrioridadController
         return new ResponseEntity<Optional<Prioridad>>(prioridadService.getPrioridadPorNivel(nivel), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Prioridad>> getPrioridades()
     {
         return new ResponseEntity<List<Prioridad>>(prioridadService.getPrioridades(), HttpStatus.OK);

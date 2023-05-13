@@ -15,7 +15,7 @@ import dev.donjon.proyectopalomobackend.entities.Criterio;
 import dev.donjon.proyectopalomobackend.services.CriterioService;
 
 @RestController
-@RequestMapping("/api/v1/critero")
+@RequestMapping("/api/v1/criteros")
 public class CriterioController
 {
     @Autowired
@@ -27,7 +27,7 @@ public class CriterioController
         return new ResponseEntity<Optional<Criterio>>(criterioService.getCriterio(id), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Criterio>> getCriterios()
     {
         return new ResponseEntity<List<Criterio>>(criterioService.getCriterios(), HttpStatus.OK);

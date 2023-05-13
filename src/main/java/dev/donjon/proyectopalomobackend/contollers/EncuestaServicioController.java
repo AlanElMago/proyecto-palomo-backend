@@ -14,7 +14,7 @@ import dev.donjon.proyectopalomobackend.entities.EncuestaServicio;
 import dev.donjon.proyectopalomobackend.services.EncuestaServicioService;
 
 @RestController
-@RequestMapping("/api/v1/encuesta-servicio")
+@RequestMapping("/api/v1/encuestas-servicio")
 public class EncuestaServicioController
 {
     @Autowired
