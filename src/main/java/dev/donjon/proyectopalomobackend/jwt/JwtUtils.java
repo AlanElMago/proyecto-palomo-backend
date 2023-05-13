@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import dev.donjon.proyectopalomobackend.entities.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -50,19 +51,21 @@ public class JwtUtils
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails)
+    public String generateToken(UserDetails userDetails, Usuario usuario)
     {
         Map<String, Object> claims = new HashMap<>();
 
-        return createToken(claims, userDetails);
+        return createToken(claims, userDetails, usuario);
     }
 
-    private String createToken(Map<String, Object> claims, UserDetails userDetails)
+    private String createToken(Map<String, Object> claims, UserDetails userDetails, Usuario usuario)
     {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .claim("authorities", userDetails.getAuthorities())
+                .claim("nombre", usuario.getNombre())
+                .claim("apellido", usuario.getApellido())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)))
                 .signWith(SignatureAlgorithm.HS256, jwtSigningKey)

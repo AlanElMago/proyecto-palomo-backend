@@ -17,7 +17,7 @@ import dev.donjon.proyectopalomobackend.entities.Usuario;
 import dev.donjon.proyectopalomobackend.services.UsuarioService;
 
 @RestController
-@RequestMapping(path = "/api/v1/usuarios")
+@RequestMapping(path = "/api/v1/usuario")
 public class UsuarioController
 {
     @Autowired
