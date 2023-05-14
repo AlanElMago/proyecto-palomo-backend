@@ -1,5 +1,6 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,15 +19,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
+@Table (name = "roles")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Rol
 {
     @Id
-    @SequenceGenerator(name = "sequencia_rol", sequenceName = "sequencia_rol", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_rol")
+    @SequenceGenerator(
+        name = "seq_roles",
+        sequenceName = "seq_roles",
+        allocationSize = 1,
+        initialValue = 101
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_roles")
     private Long id;
 
     @Column(nullable = false)
@@ -34,16 +40,10 @@ public class Rol
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
 
     public Rol(String nombre)
     {
         this.nombre = nombre;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "{id: \"" + id + "\", nombre: \"" + nombre + "\"}";
     }
 }

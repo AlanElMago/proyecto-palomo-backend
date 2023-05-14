@@ -1,5 +1,6 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,14 +19,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
-@AllArgsConstructor
+@Table (name = "prioridades")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Prioridad
 {
     @Id
-    @SequenceGenerator(name = "sequencia_prioridad", sequenceName = "sequencia_prioridad", allocationSize = 1)
+    @SequenceGenerator(
+        name = "sequencia_prioridad",
+        sequenceName = "sequencia_prioridad",
+        allocationSize = 1,
+        initialValue = 101
+    )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_prioridad")
     private Long id;
 
@@ -37,5 +43,5 @@ public class Prioridad
 
     @JsonIgnore
     @OneToMany(mappedBy = "prioridad", fetch = FetchType.LAZY)
-    private List<Actividad> actividades;
+    private List<Actividad> actividades = new ArrayList<>();
 }

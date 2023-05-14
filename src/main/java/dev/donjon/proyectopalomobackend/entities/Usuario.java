@@ -1,5 +1,6 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,15 +23,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
-@AllArgsConstructor
+@Table (name = "usuarios")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Usuario
 {
     @Id
-    @SequenceGenerator(name = "sequencia_usuario", sequenceName = "sequencia_usuario", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_usuario")
+    @SequenceGenerator(
+        name = "seq_usuarios",
+        sequenceName = "seq_usuarios",
+        allocationSize = 1,
+        initialValue = 101
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuarios")
     private Long id;
 
     @Column(nullable = false)
@@ -48,17 +54,17 @@ public class Usuario
     @Column(nullable = false)
     private boolean activo;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
         name = "usuarios_roles",
         joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "id")
     )
-    private List<Rol> roles;
+    private List<Rol> roles = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany(mappedBy = "asesoresAsignados", fetch = FetchType.LAZY)
-    private List<Actividad> actividades;
+    private List<Actividad> actividades = new ArrayList<>();
 
     public Usuario (String nombre, String apellido, String email, String contrasena, List<Rol> roles)
     {
@@ -67,25 +73,5 @@ public class Usuario
         this.email = email;
         this.contrasena = contrasena;
         this.roles = roles;
-    }
-
-    @Override
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder("{");
-
-        sb.append("\"id\": ").append("\"" + id + "\", ");
-        sb.append("\"nombre\": ").append("\"" + nombre + "\", ");
-        sb.append("\"apellido\": ").append("\"" + apellido + "\", ");
-        sb.append("\"email\": ").append("\"" + email + "\", ");
-        sb.append("\"roles\": {");
-
-        for (Rol r : roles)
-            sb.append(r.toString() + ", ");
-        sb.replace(sb.length() - 2, sb.length() - 1, "}");
-
-        sb.append("}");
-
-        return sb.toString();
     }
 }

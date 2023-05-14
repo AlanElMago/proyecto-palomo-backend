@@ -1,5 +1,6 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,19 +24,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
-@AllArgsConstructor
+@Table (name = "encuestas_servicio")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class EncuestaServicio
 {
     @Id
     @SequenceGenerator(
-            name = "sequencia_encuesta_servicio",
-            sequenceName = "sequencia_encuesta_servicio",
-            allocationSize = 1
+            name = "seq_encuestas_servicio",
+            sequenceName = "seq_encuestas_servicio",
+            allocationSize = 1,
+            initialValue = 101
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_encuesta_servicio")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_encuestas_servicio")
     private Long id;
 
     @JsonIgnore
@@ -49,9 +51,9 @@ public class EncuestaServicio
         joinColumns = @JoinColumn(name = "id_encuesta_servicio", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "id_criterio", referencedColumnName = "id")
     )
-    private List<Criterio> criterios;
+    private List<Criterio> criterios = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "encuestaServicio", fetch = FetchType.LAZY)
-    private List<Calificacion> calificaciones;
+    private List<Calificacion> calificaciones = new ArrayList<>();
 }

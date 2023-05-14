@@ -1,5 +1,6 @@
 package dev.donjon.proyectopalomobackend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,15 +25,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
-@AllArgsConstructor
+@Table (name = "actividades")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Actividad
 {
     @Id 
-    @SequenceGenerator(name = "sequencia_actividad", sequenceName = "sequencia_actividad", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_actividad")
+    @SequenceGenerator(
+        name = "seq_actividades",
+        sequenceName = "seq_actividades",
+        allocationSize = 1,
+        initialValue = 101
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_actividades")
     private Long id;
 
     @Column(nullable = false)
@@ -61,5 +67,5 @@ public class Actividad
         joinColumns = @JoinColumn(name = "id_actividad", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     )
-    private List<Usuario> asesoresAsignados;
+    private List<Usuario> asesoresAsignados = new ArrayList<>();
 }

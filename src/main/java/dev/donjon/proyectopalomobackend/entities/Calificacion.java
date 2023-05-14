@@ -19,15 +19,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
+@Table (name = "calificaciones")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Calificacion
 {
     @Id
-    @SequenceGenerator(name = "sequencia_calificacion", sequenceName = "sequencia_calificaion", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_calificaion")
+    @SequenceGenerator(
+        name = "seq_calificaciones",
+        sequenceName = "seq_calificaciones",
+        allocationSize = 1,
+        initialValue = 101
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_calificaciones")
     private Long id;
 
     @Column (nullable = false)
