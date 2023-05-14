@@ -29,9 +29,4 @@ public class RolService
     {
         return rolRepository.save(rol);
     }
-
-    public List<Rol> crearRoles(List<Rol> roles)
-    {
-        return rolRepository.saveAll(roles);
-    }
 }

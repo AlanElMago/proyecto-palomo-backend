@@ -40,10 +40,4 @@ public class RolController
     {
         return new ResponseEntity<Rol>(rolService.crearRol(rol), HttpStatus.CREATED);
     }
-
-    @PostMapping("/crear-roles")
-    public ResponseEntity<List<Rol>> crearRoles(@RequestBody List<Rol> roles)
-    {
-        return new ResponseEntity<List<Rol>>(rolService.crearRoles(roles), HttpStatus.CREATED);
-    }
 }

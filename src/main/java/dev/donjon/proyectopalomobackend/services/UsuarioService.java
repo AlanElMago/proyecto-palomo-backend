@@ -34,9 +34,4 @@ public class UsuarioService
     {
         return usuarioRepository.save(usuario);
     }
-
-    public List<Usuario> crearUsuarios(List<Usuario> usuarios)
-    {
-        return usuarioRepository.saveAll(usuarios);
-    }
 }
