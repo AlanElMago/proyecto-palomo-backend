@@ -1,14 +1,10 @@
 package dev.donjon.proyectopalomobackend.contollers;
 
-import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,10 +44,6 @@ public class AuthenticationController
         final UserDetails user = authenticationService.findUserByEmail(request.getEmail());
         final Usuario usuario = usuarioService.getUsuarioPorEmail(user.getUsername()).get();
 
-        if (user != null) {
-            return new ResponseEntity<String>(jwtUtils.generateToken(user, usuario), HttpStatus.OK);
-        }
-
-        return new ResponseEntity<String>("Some error has occured.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<String>(jwtUtils.generateToken(user, usuario), HttpStatus.OK);
     }
 }
