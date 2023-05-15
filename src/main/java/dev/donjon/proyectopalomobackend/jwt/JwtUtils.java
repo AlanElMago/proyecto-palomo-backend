@@ -64,6 +64,7 @@ public class JwtUtils
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .claim("authorities", userDetails.getAuthorities())
+                .claim("idUsuario", usuario.getId())
                 .claim("nombre", usuario.getNombre())
                 .claim("apellido", usuario.getApellido())
                 .setIssuedAt(new Date(System.currentTimeMillis()))

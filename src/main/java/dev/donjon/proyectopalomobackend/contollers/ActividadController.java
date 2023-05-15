@@ -38,10 +38,10 @@ public class ActividadController
     }
 
     @GetMapping("/por-id-usuario/{id}")
-    public ResponseEntity<List<Actividad>> getActividadesPorIdUsuario(@PathVariable Long idUsuario)
+    public ResponseEntity<List<Actividad>> getActividadesPorIdUsuario(@PathVariable Long id)
     {
         return new ResponseEntity<List<Actividad>>(
-                actividadService.getActividadesPorIdUsuario(idUsuario), HttpStatus.OK
+                actividadService.getActividadesPorIdUsuario(id), HttpStatus.OK
         );
     }
 
