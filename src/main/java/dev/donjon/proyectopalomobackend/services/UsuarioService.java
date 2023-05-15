@@ -34,4 +34,25 @@ public class UsuarioService
     {
         return usuarioRepository.save(usuario);
     }
+
+    public Usuario actualizarUsuario(Usuario usuario)
+    {
+        // el cifrado va antes de la asignación
+
+        if (usuario.getContrasena() == null) {
+            Usuario usuarioObsoleto = usuarioRepository.findById(usuario.getId()).get();
+            usuario.setContrasena(usuarioObsoleto.getContrasena());
+        }
+
+        return usuarioRepository.save(usuario);
+    }
+
+    public Long eliminarUsuario(Long idUsuario)
+    {
+        Usuario usuarioObsoleto = usuarioRepository.findById(idUsuario).get();
+
+        usuarioRepository.delete(usuarioObsoleto);
+
+        return idUsuario;
+    }
 }
