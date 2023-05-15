@@ -28,7 +28,7 @@ public class PrioridadController
     }
 
     @GetMapping("/por-nivel/{nivel}")
-    public ResponseEntity<Optional<Prioridad>> getPrioridadPorNivel(@PathVariable Integer nivel)
+    public ResponseEntity<Optional<Prioridad>> getPrioridadPorNivel(@PathVariable Short nivel)
     {
         return new ResponseEntity<Optional<Prioridad>>(prioridadService.getPrioridadPorNivel(nivel), HttpStatus.OK);
     }

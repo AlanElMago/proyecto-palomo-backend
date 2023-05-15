@@ -27,12 +27,12 @@ public class Prioridad
 {
     @Id
     @SequenceGenerator(
-        name = "sequencia_prioridad",
-        sequenceName = "sequencia_prioridad",
+        name = "seq_prioridades",
+        sequenceName = "seq_prioridades",
         allocationSize = 1,
         initialValue = 101
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequencia_prioridad")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_prioridades")
     private Long id;
 
     @Column(nullable = false)
@@ -44,4 +44,10 @@ public class Prioridad
     @JsonIgnore
     @OneToMany(mappedBy = "prioridad", fetch = FetchType.LAZY)
     private List<Actividad> actividades = new ArrayList<>();
+
+    public Prioridad (Short nivel, String nombre)
+    {
+        this.nivel = nivel;
+        this.nombre = nombre;
+    }
 }

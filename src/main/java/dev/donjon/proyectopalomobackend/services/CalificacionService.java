@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.donjon.proyectopalomobackend.entities.Calificacion;
-import dev.donjon.proyectopalomobackend.repositories.CalificaionRepository;
+import dev.donjon.proyectopalomobackend.repositories.CalificacionRepository;
 
 @Service
 public class CalificacionService
 {
     @Autowired
-    private CalificaionRepository calificaionRepository;
+    private CalificacionRepository calificaionRepository;
 
     public Optional<Calificacion> getCalificaion(Long id)
     {

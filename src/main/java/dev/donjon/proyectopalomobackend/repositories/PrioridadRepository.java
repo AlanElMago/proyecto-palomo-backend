@@ -10,5 +10,5 @@ import dev.donjon.proyectopalomobackend.entities.Prioridad;
 @Repository
 public interface PrioridadRepository extends JpaRepository<Prioridad, Long>
 {
-    public Optional<Prioridad> findPrioridadByNivel(Integer nivel);
+    public Optional<Prioridad> findPrioridadByNivel(Short nivel);
 }

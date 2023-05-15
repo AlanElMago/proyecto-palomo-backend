@@ -13,14 +13,14 @@ import dev.donjon.proyectopalomobackend.repositories.PrioridadRepository;
 public class PrioridadService
 {
     @Autowired
-    PrioridadRepository prioridadRepository;
+    private PrioridadRepository prioridadRepository;
 
     public Optional<Prioridad> getPrioridad(Long id)
     {
         return prioridadRepository.findById(id);
     }
 
-    public Optional<Prioridad> getPrioridadPorNivel(Integer nivel)
+    public Optional<Prioridad> getPrioridadPorNivel(Short nivel)
     {
         return prioridadRepository.findPrioridadByNivel(nivel);
     }

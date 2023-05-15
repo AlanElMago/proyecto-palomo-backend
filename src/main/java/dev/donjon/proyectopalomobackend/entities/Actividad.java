@@ -2,6 +2,7 @@ package dev.donjon.proyectopalomobackend.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,27 +45,39 @@ public class Actividad
     private String asunto;
 
     @Column(nullable = false)
-    private String nombreSolicitate;
+    private String nombreSolicitante;
 
     @Column(nullable = false)
     private String descripcion;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_prioridad")
     private Prioridad prioridad;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_encuesta_servicio")
     private EncuestaServicio encuestaServicio;
 
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
         name = "actividades_usuarios",
         joinColumns = @JoinColumn(name = "id_actividad", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     )
     private List<Usuario> asesoresAsignados = new ArrayList<>();
+
+    public Actividad(
+            String asunto,
+            String nombreSolicitante,
+            String descripcion,
+            Prioridad prioridad,
+            List<Usuario> asesoresAsignados
+    )
+    {
+        this.asunto = asunto;
+        this.nombreSolicitante = nombreSolicitante;
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+        this.asesoresAsignados = asesoresAsignados;
+    }
 }

@@ -6,8 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +43,23 @@ public class ActividadController
         return new ResponseEntity<List<Actividad>>(
                 actividadService.getActividadesPorIdUsuario(idUsuario), HttpStatus.OK
         );
+    }
+
+    @PostMapping("/crear-actividad")
+    public ResponseEntity<Actividad> crearActividad(@RequestBody Actividad actividad)
+    {
+        return new ResponseEntity<Actividad>(actividadService.crearActividad(actividad), HttpStatus.OK);
+    }
+
+    @PutMapping("/actualizar-actividad")
+    public ResponseEntity<Actividad> actualizarActividad(@RequestBody Actividad actividad)
+    {
+        return new ResponseEntity<Actividad>(actividadService.actualizarActividad(actividad), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar-actividad/{id}")
+    public ResponseEntity<Long> eliminarActividad(@PathVariable Long id)
+    {
+        return new ResponseEntity<Long>(actividadService.eliminarActividad(id), HttpStatus.OK);
     }
 }
